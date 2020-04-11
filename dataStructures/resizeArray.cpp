@@ -1,3 +1,6 @@
+//contains function to resize a array
+//author: aniket more
+//date: 11/04/2020
 #include<iostream>
 using namespace std;
 
