@@ -36,18 +36,19 @@ public:
 
             head = temp;
             size++;
-            return;
-        }
-        Node *temp = new Node;
-        temp->data = n;
-        temp->next = head;
+            
+        }else{
+            Node *temp = new Node;
+            temp->data = n;
+            temp->next = head;
         
-        head =temp;
-        size++;
-        return;
+            head =temp;
+            size++;
+
+        }    
     }
 
-    T pop(){ //does not check underlflow
+    T pop(){ 
         if(isempty()){
             throw(std::underflow_error("underflow error !!"));
         }
@@ -104,5 +105,8 @@ int main(){
     cout<<s.pop()<<" "<<s.pop()<<endl;
 
     s.display();
+
+    cout<<s.pop()<<endl;
+
 
 }
