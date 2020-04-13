@@ -42,7 +42,7 @@ void bubbleDown(int arr[],int n,int i){ //function to bubble down an element
 void maxHeapify(int arr[],int n){ //function to maxheapify an array
     int hindex = n-1;
     int i;
-    int start = (hindex-1)/2;
+    int start = (hindex!=0)?(hindex-1)/2:0; //if only one element in array then start might become -1, hence this line
     for(i=start;i>=0;i--){
         bubbleDown(arr,n,i);
     }
