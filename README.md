@@ -4,7 +4,9 @@
 * __Data structures__
   * [singly linked list](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/simpleSinglyLinkedList.cpp)
   * [stacks](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/stackswithList.cpp)
+  * [queue](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/queuewithlist.cpp)
   * [min priority queue](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/priorityQueue.cpp)
+  
 
 * __Algorithms__
   * [binary search (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/binarySearch.cpp)

@@ -1,3 +1,6 @@
+//queue implementaion with a linked list
+//author: aniket more
+//date: 16/04/2020
 #include <iostream>
 using namespace std;
 class Queue
