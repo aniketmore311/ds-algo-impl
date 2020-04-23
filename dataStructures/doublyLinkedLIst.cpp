@@ -1,3 +1,6 @@
+//doubly inked list
+//author: aniket more
+//date: 23/04/2020
 #include <iostream>
 using namespace std;
 template <typename T>
