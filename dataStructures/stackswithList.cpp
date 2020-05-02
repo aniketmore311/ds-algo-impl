@@ -1,15 +1,16 @@
 //implementing stack with a linked list
 //author: aniket more
 //date: 11/04/2020
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-template<typename T>
-class Lstack{
+template <typename T>
+class Lstack
+{
 private:
-
-    class Node{
-        public:
+    class Node
+    {
+    public:
         T data;
         Node *next;
     };
@@ -18,38 +19,44 @@ private:
     int size = 0;
 
 public:
-    Lstack(){}
+    Lstack() {}
 
-    bool isempty(){
-        return(size==0);
+    bool isempty()
+    {
+        return (size == 0);
     }
 
-    int getSize(){
+    int getSize()
+    {
         return size;
     }
 
-    void push(T n){
-        if(isempty()){
+    void push(T n)
+    {
+        if (isempty())
+        {
             Node *temp = new Node;
-            temp->data=n;
+            temp->data = n;
             temp->next = nullptr;
 
             head = temp;
             size++;
-            
-        }else{
+        }
+        else
+        {
             Node *temp = new Node;
             temp->data = n;
             temp->next = head;
-        
-            head =temp;
-            size++;
 
-        }    
+            head = temp;
+            size++;
+        }
     }
 
-    T pop(){ 
-        if(isempty()){
+    T pop()
+    {
+        if (isempty())
+        {
             throw(std::underflow_error("underflow error !!"));
         }
         Node *temp = head;
@@ -59,42 +66,42 @@ public:
         delete temp;
         size--;
         return element;
-        
-
     }
 
-    void display(){
-        Node *temp =head;
-        while(temp!=nullptr){
-            cout<<temp->data<<" ";
+    void display()
+    {
+        Node *temp = head;
+        while (temp != nullptr)
+        {
+            cout << temp->data << " ";
             temp = temp->next;
         }
-        cout<<"\n";
+        cout << "\n";
     }
 
-    void clear(){
+    void clear()
+    {
         Node *trav = head;
         Node *travNext = nullptr;
 
-        while(trav!=nullptr){
+        while (trav != nullptr)
+        {
             travNext = trav->next;
             delete trav;
             trav = travNext;
         }
 
-        size =0;
+        size = 0;
         head = nullptr;
-
     }
 
-    ~Lstack(){
+    ~Lstack()
+    {
         clear();
     }
-
-
-
 };
-int main(){
+int main()
+{
     Lstack<int> s;
     s.push(10);
     s.push(20);
@@ -102,11 +109,9 @@ int main(){
 
     s.display();
 
-    cout<<s.pop()<<" "<<s.pop()<<endl;
+    cout << s.pop() << " " << s.pop() << endl;
 
     s.display();
 
-    cout<<s.pop()<<endl;
-
-
+    cout << s.pop() << endl;
 }
