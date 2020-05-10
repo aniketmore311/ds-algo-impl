@@ -143,14 +143,15 @@ public:
         {
             node->right = remove(node->right, key);
         }
-        else //this is the node to be removed
+        else //node to be removed has been found
         {
             if (node->left == nullptr) //only right child
             {
                 Node *temp = node->right;
                 delete node;
                 size--;
-                return temp;
+                return temp; // this link of the right child of node is given to the call from its parent 
+                // which effectively updates the link that the parent called from
             }
             else if (node->right == nullptr) //only left child
             {
@@ -163,13 +164,13 @@ public:
             {
                 Node *temp = minimum(node->right);            //finding succesor to be placed at node
                 node->key = temp->key;                        //putting succesor at node by copying the value
-                node->right = remove(node->right, temp->key); //deleting succesor copy
+                node->right = remove(node->right, temp->key); //deleting the copy of the succesor which is at its original position
             }
         }
-        return node; //to be returned by function calls which do not make changes in any Node* (propogation calls)
+        return node; //
     }
 
-    void remove(T key)
+    void remove(T key) //api for remove
     {
         root = remove(root, key);
     }
