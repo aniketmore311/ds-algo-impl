@@ -41,7 +41,7 @@ public:
         return size;
     }
 
-    Node *inorderPrint(Node *node)
+    Node *inorderPrint(Node *node) // inorder traversal
     {
         if (node != nullptr)
         {
@@ -50,12 +50,12 @@ public:
             inorderPrint(node->right);
         }
     }
-    void inorderPrint()
+    void inorderPrint() // api for inorder traversal
     {
         inorderPrint(root);
     }
 
-    Node *minimum(Node *node)
+    Node *minimum(Node *node) // node of the minimum element
     {
         while (node->left != nullptr)
         {
@@ -63,13 +63,13 @@ public:
         }
         return node;
     }
-    T minimum()
+    T minimum() // api for minimum element
     {
         Node *temp = minimum(root);
         return (temp->key);
     }
 
-    Node *maximum(Node *node)
+    Node *maximum(Node *node) // node to the maximum element 
     {
         while (node->right != nullptr)
         {
@@ -77,55 +77,56 @@ public:
         }
         return node;
     }
-    T maximum()
+    T maximum() // api for maximum element
     {
         Node *temp = maximum(root);
         return (temp->key);
     }
 
-    Node *search(T key)
+    Node *search(T key) // binary search (iterative) by updating values
     {
         Node *temp = root;
-        while (temp != nullptr)
+        while (temp != nullptr) 
         {
-            if (key == temp->key)
+            if (key == temp->key) //found
             {
                 return temp;
             }
-            else if (key < temp->key)
+            else if (key < temp->key) //less than current
             {
-                temp = temp->left;
+                temp = temp->left; // upadating valu of temp 
             }
-            else
+            else //greater than current
             {
-                temp = temp->right;
+                temp = temp->right; // updating value of temp
             }
         }
-        return nullptr;
+        return nullptr; // not found
     }
 
     Node *insert(Node *node, T key) //recurcise method returns links backwards
     {
-        if (node == nullptr)
+        if (node == nullptr) // base case: found the place to insert the new node
         {
             node = new Node(key); //attaching the new node onto the first null link
             size++;
         }
-        else if (key <= node->key) //propogation
+        else if (key <= node->key) // finding the place to insert the node (propogation)
         {
-            node->left = insert(node->left, key);
+            node->left = insert(node->left, key); // recursive call which returns the updated link
         }
-        else if (key > node->key) //propogation
+        else if (key > node->key) // finding the place to insert the node (propogation)
         {
-            node->right = insert(node->right, key);
+            node->right = insert(node->right, key); // recursive call which returns the updated link
         }
-        return node; //returning the backlinks
+        return node; //returning the backlinks 
+        //node will only give back a diffent value than what was given when we insert the new node at the node pointer
     }
     void insert(T key)
     {
-        if (search(key) == nullptr)
+        if (search(key) == nullptr) // insert only if not present 
         {
-            root = insert(root, key);
+            root = insert(root, key); // function call which returns updated links
         }
     }
 
