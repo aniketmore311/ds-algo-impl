@@ -52,7 +52,7 @@ vector<int> allFactorsVector(int n)
 vector<int> primeFactorsVector(int n) //implementation which returns a vector
 {
     vector<int> v;                   //vector to be returned
-    for (int i = 2; i * 2 <= n; i++) // the loop
+    for (int i = 2; i * i <= n; i++) // the loop
     {
         while (n % i == 0) // if a factor is found
         {
