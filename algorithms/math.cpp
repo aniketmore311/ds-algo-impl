@@ -1,4 +1,4 @@
-//math: prime checker, factorization, prime factorization, euclid's gcd
+//math: prime checker, factorization, prime factorization, euclid's gcd, fast exponentiation
 //author: aniket more
 //date: 13/05/2020
 #include <iostream>
@@ -18,7 +18,7 @@ bool isprime(int n)
     return true;
 }
 
-int gcd(int a, int b) // euclid's gcd algorithm
+int gcd(int a, int b) // euclid's gcd algorithm (recursive)
 {
     if (b == 0)
         return a;
@@ -46,7 +46,7 @@ vector<int> allFactorsVector(int n)
                 v.push_back(n / i); // then only add its cofactor
         }
     }
-    return v;
+    return v; // return the vector
 }
 
 vector<int> primeFactorsVector(int n) //implementation which returns a vector
@@ -63,6 +63,23 @@ vector<int> primeFactorsVector(int n) //implementation which returns a vector
     if (n != 1)         // at this point if n is not 1 that means n has no factor in 2 to sqrt(n) that means it is a prime
         v.push_back(n); // prime is its own prime factor
     return v;           //return the vector
+}
+
+long long fastPower(long long base, long long exp, long long m)
+{
+    // this code is based on the concept of binary exponentiation and modulo multiplication
+    base = base % m;
+    long long res = 1;
+    while (exp > 0)
+    {
+        if (exp & 1)
+        {
+            res = (res * base) % m;
+        }
+        base = (base * base) % m;
+        exp = exp >> 1;
+    }
+    return res;
 }
 
 void printVector(vector<int> vec)
@@ -94,5 +111,7 @@ int main()
     cout << lcm(2, 4) << endl; // 4
     cout << lcm(1, 5) << endl; // 5
 
-
+    cout << fastPower(5, 3, 100) << endl; // 125 % 100 = 25
+    cout << fastPower(2, 0, 100) << endl; // 1
+    cout << fastPower(2, 1, 100) << endl; // 2
 }
