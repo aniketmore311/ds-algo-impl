@@ -57,11 +57,7 @@ void solve()
 
 int main()
 {
-    std::ios_base::sync_with_stdio(false);
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+
     ll t;
     cin >> t;
     while (t--)
