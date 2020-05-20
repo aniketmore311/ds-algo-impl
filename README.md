@@ -20,7 +20,7 @@
   - [heapsort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/HeapSort.cpp)
   - [counting sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/CountingSort.cpp)
   - [shell sort, insertion sort, selection sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/elementrySorting.cpp)
-  - [math: isprime, all factors, prime factors, gcd, lcm](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/math.cpp)
+  - [math: isprime, all factors, prime factors, gcd, lcm, fast exponentiation](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/math.cpp)
 
 * **popular problems**
   - [nth largest element](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/nthLargestQuickSort.cpp)
