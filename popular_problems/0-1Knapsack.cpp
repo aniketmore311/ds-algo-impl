@@ -5,7 +5,7 @@ using namespace std;
 
 int dp[1002][1002]; // this will be for memoization form i from 1 to n and j from 1 to w
 
-int MaxVal(int n, int w, int values[], int weights[])
+int MaxVal(int n, int w, int values[], int weights[]) //recursive memoized function
 {
     if (n == 0 || w == 0)
         return 0;
