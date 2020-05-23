@@ -1,3 +1,7 @@
+// iterative soution to 0-1 knapsack (dynamic programming)
+//author: aniket more
+//date: 23-05-2020
+
 #include <iostream>
 using namespace std;
 
