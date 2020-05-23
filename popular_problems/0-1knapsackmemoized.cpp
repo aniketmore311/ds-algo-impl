@@ -1,3 +1,6 @@
+// memoized solution to 0-1 knapsack problem (dynamic programming)
+// author: aniket more
+// date: 23-05-2020
 #include <bits/stdc++.h>
 #define ll long long
 
