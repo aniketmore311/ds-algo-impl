@@ -26,5 +26,6 @@
 * **popular problems**
   - [nth largest element](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/nthLargestQuickSort.cpp)
   - [checking palindrome string](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/stringPalindrome.cpp)
-  - [0-1 knapsack (memoized)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1Knapsack.cpp)
+  - [0-1 knapsack (memoized)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackmemoized.cpp)
+  - [0-1 knapsack (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackIterative.cpp)
 
