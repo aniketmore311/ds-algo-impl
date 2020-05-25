@@ -11,18 +11,21 @@ void edgeInput(vector<int> adj[]);
 
 void printGraph(vector<int> adj[], int n);
 
-void dfs(vector<int> adj[], vector<bool> &visited, int s);
+void dfs(vector<int> adj[], vector<bool> &visited, int s); // the recursive implementation
+
+void dfs(vector<int> adj[], int n, int s); // the api
 
 void bfs(vector<int> adj[], vector<bool> &visited, vector<int> &distances, int s);
 
-void printDistances(vector<int> distances);
+void bfs(vector<int> adj[], int n, int s); //api
 
-void printVisited(vector<bool> visited);
+template <typename T>
+void printVector(vector<T> vec);
 
 int main()
 {
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
 
     int n; //n is number of nodes 0 to n-1
     cin >> n;
@@ -31,14 +34,8 @@ int main()
     edgeInput(adj);     // input of edges
     printGraph(adj, n); //printing the graph
 
-    vector<bool> visited(n, false);
-    vector<int> distances(n, -1);
-
-    bfs(adj, visited, distances, 1);
-    // dfs(adj, visited, 0);
-
-    printVisited(visited);
-    printDistances(distances);
+    dfs(adj, n, 0);
+    bfs(adj, n, 0);
 }
 
 void addEdge(vector<int> adj[], int u, int v)
@@ -75,26 +72,14 @@ void printGraph(vector<int> adj[], int n)
     cout << "\n";
 }
 
-void printDistances(vector<int> distances)
+template <typename T>
+void printVector(vector<T> vec)
 {
     int i;
-    int n = distances.size();
-    cout << "distances: " << endl;
-    for (i = 0; i < n; i++) // prints distances
+    int n = vec.size();
+    for (i = 0; i < n; i++) // prints vec
     {
-        cout << i << "-> " << distances[i] << endl;
-    }
-    cout << endl;
-}
-
-void printVisited(vector<bool> visited)
-{
-    int i;
-    int n = visited.size();
-    cout << "visited: " << endl;
-    for (i = 0; i < n; i++) // prints distances
-    {
-        cout << i << "-> " << visited[i] << endl;
+        cout << i << "-> " << vec[i] << endl;
     }
     cout << endl;
 }
@@ -109,8 +94,17 @@ void dfs(vector<int> adj[], vector<bool> &visited, int s)
         dfs(adj, visited, num);
     }
 }
+void dfs(vector<int> adj[], int n, int s) //api
+{
 
-void bfs(vector<int> adj[], vector<bool> &visited, vector<int> &distances, int s)
+    vector<bool> visited(n, false);
+    dfs(adj, visited, s);
+
+    cout << "visited" << endl; // print the visited vector
+    printVector<bool>(visited);
+}
+
+void bfs(vector<int> adj[], vector<bool> &visited, vector<int> &distances, int s) //true function
 {
     queue<int> q;
 
@@ -130,4 +124,15 @@ void bfs(vector<int> adj[], vector<bool> &visited, vector<int> &distances, int s
             q.push(child);                            // push each child into the queue so that their children could be processed
         }
     }
+}
+void bfs(vector<int> adj[], int n, int s) //api
+{
+    vector<bool> visited(n, false);
+    vector<int> distances(n, -1);
+    bfs(adj, visited, distances, s);
+
+    cout << "visited" << endl;
+    printVector<bool>(visited);
+    cout << "distances" << endl;
+    printVector<int>(distances);
 }
