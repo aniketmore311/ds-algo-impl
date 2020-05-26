@@ -21,11 +21,10 @@
   - [counting sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/CountingSort.cpp)
   - [shell sort, insertion sort, selection sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/elementrySorting.cpp)
   - [math: isprime, all factors, prime factors, gcd, lcm, fast exponentiation](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/math.cpp)
-  - [undirected graphs, bfs, dfs](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/undirectedGraphs.cpp)
+  - [graphs, bfs, dfs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/graphs.cpp)
   - [connected Components in undirected graphs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/connectedComponents.cpp)
 
 * **popular problems**
-  - [nth largest element](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/nthLargestQuickSort.cpp)
   - [checking palindrome string](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/stringPalindrome.cpp)
   - [0-1 knapsack (memoized)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackmemoized.cpp)
   - [0-1 knapsack (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackIterative.cpp)
