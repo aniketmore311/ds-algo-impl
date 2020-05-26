@@ -22,8 +22,8 @@ void addEdge(vector<int> adj[], int u, int v);
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+//     freopen("input.txt", "r", stdin);
+//     freopen("output.txt", "w", stdout);
 
     int n; //n is number of nodes 0 to n-1
     cin >> n;
