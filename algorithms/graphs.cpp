@@ -157,8 +157,8 @@ public:
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("builds/input.txt", "r", stdin);
+    freopen("builds/output.txt", "w", stdout);
 
     // sample input :
     //     0 1 1 2 2 0 0 3 3 5 5 4 4 3
