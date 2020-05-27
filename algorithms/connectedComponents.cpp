@@ -22,8 +22,8 @@ void addEdge(vector<int> adj[], int u, int v);
 
 int main()
 {
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdout);
+    // freopen("builds/input.txt", "r", stdin);
+    // freopen("builds/output.txt", "w", stdout);
 
     int n; //n is number of nodes 0 to n-1
     cin >> n;
@@ -34,6 +34,7 @@ int main()
 
     vector<int> connections(n); //
     processConnections(adj, connections);
+    printVector<int>(connections);
     cout << queryConnections(0, 1, connections) << endl;
     cout << queryConnections(2, 3, connections) << endl;
 }
@@ -120,6 +121,8 @@ void processConnections(vector<int> adj[], vector<int> &connections)
     printVector<int>(connections);
 
     // printing the count of connected components
+    // in the last loop count is incremented one last time hence even though
+    // the id of the last component is one less than the number of components we get the correct count
     cout << "there are " << count << " connected components" << endl;
 }
 
