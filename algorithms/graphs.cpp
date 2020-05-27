@@ -16,7 +16,7 @@ private:
     // private methods
     void dfs(int s, vector<bool> &visited) // the recursive dfs implementation
     {
-        if (visited[s])// if visited return
+        if (visited[s]) // if visited return
             return;
         visited[s] = true;
         //for every child of s ie every element of the vector at adj[s]
@@ -30,7 +30,7 @@ private:
     {
         queue<int> q;
         // processing s
-        visited[s] = true; 
+        visited[s] = true;
         distances[s] = 0;
         fromNode[s] = s;
         q.push(s); // push s to the string
@@ -44,10 +44,10 @@ private:
             {
                 if (visited[child]) // if the child is visited before then return
                     continue;
-                    
-                visited[child] = true; // mark as visited
+
+                visited[child] = true;                    // mark as visited
                 distances[child] = distances[parent] + 1; // record the distance
-                fromNode[child] = parent; // note the parent
+                fromNode[child] = parent;                 // note the parent
 
                 q.push(child); // push the child to the queqe so that its children could be processed
             }
@@ -90,6 +90,32 @@ public:
         bfs(s, visited, distances, fromNode);
     }
 
+    void topologicalSort()
+    {
+        stack<int> st;
+        visited.assign(v, false);
+        dfsSort(3, st, visited);
+        cout << "Topological Sort: " << endl;
+        while (!st.empty())
+        {
+            cout << st.top() << " ";
+            st.pop();
+        }
+    }
+
+    void dfsSort(int s, stack<int> &st, vector<bool> &visited)
+    {
+        if (visited[s])
+            return;
+
+        visited[s] = true;
+        for (auto child : adj[s])
+        {
+            dfsSort(child, st, visited);
+        }
+        st.push(s);
+    }
+
     void directedInput(int e) // input for directed graph
     {
         this->e = e;
@@ -117,7 +143,7 @@ public:
 
     void addEdge(int u, int v)
     {
-        adj[u].push_back(v);
+        adj.at(u).push_back(v);
     }
 
     void printGraph()
@@ -157,26 +183,30 @@ public:
 
 int main()
 {
-    freopen("builds/input.txt", "r", stdin);
-    freopen("builds/output.txt", "w", stdout);
+    // freopen("builds/input.txt", "r", stdin);
+    // freopen("builds/output.txt", "w", stdout);
 
     // sample input :
     //     0 1 1 2 2 0 0 3 3 5 5 4 4 3
     //     0 1 1 2 2 0 0 3 3 5 5 4 4 3
 
-    cout << "directed graph: " << endl;
-    Graph dg(6);         // graph has 6 nodes
-    dg.directedInput(7); // graph has 7 edges
-    dg.printGraph();     // printing the graph
-    dg.bfs(3);
-    dg.printVisited();
-    dg.printDistances();
+    // cout << "directed graph: " << endl;
+    // Graph dg(6);         // graph has 6 nodes
+    // dg.directedInput(7); // graph has 7 edges
+    // dg.printGraph();     // printing the graph
+    // dg.bfs(3);
+    // dg.printVisited();
+    // dg.printDistances();
 
-    cout << "undirected graph: " << endl;
-    Graph udg(6);
-    udg.undirectedInput(7);
-    udg.printGraph();
-    udg.bfs(3);
-    udg.printVisited();
-    udg.printDistances();
+    // cout << "undirected graph: " << endl;
+    // Graph udg(6);
+    // udg.undirectedInput(7);
+    // udg.printGraph();
+    // udg.bfs(3);
+    // udg.printVisited();
+    // udg.printDistances();
+
+    Graph dg(7);
+    dg.directedInput(11);
+    dg.topologicalSort();
 }
