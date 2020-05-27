@@ -89,12 +89,27 @@ public:
         fromNode.assign(v, -1);
         bfs(s, visited, distances, fromNode);
     }
-
+    // topological sort
+    // this function prints the topological sort
     void topologicalSort()
     {
-        stack<int> st;
-        visited.assign(v, false);
-        dfsSort(3, st, visited);
+        stack<int> st; // stack for the reverse post order
+        // post order is the order in which the points are done
+        // i.e. all the children of that node have been processed then only it is done
+        // and reverse of that is the topological sort
+        visited.assign(v, false); // preparing the visited vector for dfs
+        // to make sure that all the connected components are covered the following for loop is implemented
+        // if we make only one dfs call from the root then
+        // the nodes which are nor reachable from the node will not be considered
+        // hence it is important to make multiple dfs calls
+        for (int i = 0; i < v; i++)
+        {
+            if (!visited[i])
+            {
+                dfsSort(i, st, visited);
+            }
+        }
+        // printing the stack
         cout << "Topological Sort: " << endl;
         while (!st.empty())
         {
@@ -113,7 +128,7 @@ public:
         {
             dfsSort(child, st, visited);
         }
-        st.push(s);
+        st.push(s); // the parent is pushed to the stack only after all of children have been processed
     }
 
     void directedInput(int e) // input for directed graph
@@ -183,8 +198,8 @@ public:
 
 int main()
 {
-    // freopen("builds/input.txt", "r", stdin);
-    // freopen("builds/output.txt", "w", stdout);
+    freopen("builds/input.txt", "r", stdin);
+    freopen("builds/output.txt", "w", stdout);
 
     // sample input :
     //     0 1 1 2 2 0 0 3 3 5 5 4 4 3
