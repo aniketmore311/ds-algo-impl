@@ -11,6 +11,7 @@ private:
     vector<int> distances;
     vector<int> fromNode; // keeps a record of parent of every element in bfs
     vector<int> connectedComponents;
+    vector<int> stronglyConnectedComponents;
     int v; // no of vertices
     int e; // no of edeges
 
@@ -24,6 +25,7 @@ public:
         distances.resize(v, -1);
         fromNode.resize(v, -1);
         connectedComponents.resize(v, -1);
+        stronglyConnectedComponents.resize(v, -1);
     }
 
     void dfs(int s) // api for dfs
@@ -83,9 +85,9 @@ public:
 
     // topological sort
     // this function prints the topological sort
-    void topologicalSort()
+    void topologicalSort() //tested : works
     {
-        stack<int> st; // stack for the reverse post order
+        deque<int> dq; // stack for the reverse post order (deque acts as a stack)
         // post order is the order in which the points are done
         // i.e. all the children of that node have been processed then only it is done
         // and reverse of that is the topological sort
@@ -98,22 +100,22 @@ public:
         {
             if (!visited[i])
             {
-                dfsSort(i, st, visited);
+                dfsSort(i, dq, visited);
             }
         }
-
-        // printing the stack
+        // now our deque contains the topological sort order
+        // printing the stack(deque)
         cout << "Topological Sort: " << endl;
-        while (!st.empty())
+        for (auto num : dq)
         {
-            cout << st.top() << " ";
-            st.pop();
+            cout << num << " ";
         }
+        cout << "\n";
     }
 
     // the dfs method for topological sort
-    // it pushes a node into the stack once its done processing all its children
-    void dfsSort(int s, stack<int> &st, vector<bool> &visited)
+    // it pushes a node into the stack(deque.push_front) once its done processing all its children
+    void dfsSort(int s, deque<int> &dq, vector<bool> &visited)
     {
         if (visited[s])
             return;
@@ -121,13 +123,14 @@ public:
         visited[s] = true;
         for (auto child : adj[s])
         {
-            dfsSort(child, st, visited);
+            dfsSort(child, dq, visited);
         }
-        // the parent is pushed to the stack only after all of children have been processed
-        st.push(s);
+        // the parent is pushed to the stack(deque) only after all of children have been processed
+        dq.push_front(s);
     }
 
     // connected components in undirected graphs
+
     void processConnectedComponents()
     {
         visited.assign(v, false);
@@ -156,6 +159,51 @@ public:
             dfsConnectedComponents(child, visited, count);
         }
     }
+
+    //strongly connected components in directed graphs
+    // algorithm:
+    /*
+    * to find the strongly connected components 
+    * we follow a similar algorithms to that of connected components
+    * but instead of finding connected components by running many dfs in direct order
+    * we run many dfs in a special order 
+    * that order is the reverse post order similar to topological sort but
+    * we run the algorithms on the reverse graph of the problem graph
+    * so we have the reverse post order on a reverse graph
+    */
+    // vector<vector<int>> reverseGraph() // tested: works
+    // {
+    //     vector<vector<int>> result;
+    //     result.resize(v);
+    //     int i = 0;
+
+    //     for (i = 0; i < v; i++)
+    //     {
+    //         for (auto child : adj.at(i))
+    //         {
+    //             result.at(child).push_back(i);
+    //         }
+    //     }
+    //     return result;
+    // }
+
+    // // method that returns reverse post order in a deque
+    // deque<int> reversePostOrder()
+    // {
+    //     stack<int> st;            // stack for the reverse post order
+    //     visited.assign(v, false); // preparing the visited vector for dfs
+    //     for (int i = 0; i < v; i++)
+    //     {
+    //         if (!visited[i])
+    //         {
+    //             dfsSort(i, st, visited);
+    //         }
+    //     }
+    // }
+
+    // void processStronglyConnectedComponents()
+    // {
+    // }
 
     // input methods
 
@@ -250,25 +298,5 @@ int main()
     freopen("builds/input.txt", "r", stdin);
     freopen("builds/output.txt", "w", stdout);
 
-    // sample input :
-    //     0 1 1 2 2 0 0 3 3 5 5 4 4 3
-    //     0 1 1 2 2 0 0 3 3 5 5 4 4 3
-
-    // cout << "directed graph: " << endl;
-    // Graph dg(6);         // graph has 6 nodes
-    // dg.directedInput(7); // graph has 7 edges
-    // dg.printGraph();     // printing the graph
-    // dg.bfs(3);
-    // dg.printVisited();
-    // dg.printDistances();
-
-    cout << "undirected graph: " << endl;
-    Graph udg(6);
-    udg.undirectedInput(6);
-    udg.printGraph();
-    udg.bfs(0);
-    udg.printVisited();
-    udg.printDistances();
-    udg.processConnectedComponents();
-    udg.printConnectedComponents();
+    
 }
