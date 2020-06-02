@@ -221,7 +221,4 @@ int main()
     // udg.printVisited();
     // udg.printDistances();
 
-    Graph dg(7);
-    dg.directedInput(11);
-    dg.topologicalSort();
 }
