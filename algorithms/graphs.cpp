@@ -10,10 +10,28 @@ private:
     vector<bool> visited;
     vector<int> distances;
     vector<int> fromNode; // keeps a record of parent of every element in bfs
-    int v;                // no of vertices
-    int e;                // no of edeges
+    vector<int> connectedComponents;
+    int v; // no of vertices
+    int e; // no of edeges
 
-    // private methods
+public:
+    Graph(int v) //constructor
+    {
+        this->v = v;
+        adj.resize(v); //allocates and initialises the vector of vector
+        // allocating and initialising other attributes
+        visited.resize(v, false);
+        distances.resize(v, -1);
+        fromNode.resize(v, -1);
+        connectedComponents.resize(v, -1);
+    }
+
+    void dfs(int s) // api for dfs
+    {
+        visited.assign(v, false); // preparing the visited array for dfs
+        dfs(s, visited);
+    }
+
     void dfs(int s, vector<bool> &visited) // the recursive dfs implementation
     {
         if (visited[s]) // if visited return
@@ -26,6 +44,15 @@ private:
         }
     }
 
+    void bfs(int s) // api for bfs
+    {
+        visited.assign(v, false);
+        distances.assign(v, -1);
+        fromNode.assign(v, -1);
+        bfs(s, visited, distances, fromNode);
+    }
+
+    // actual bfs function
     void bfs(int s, vector<bool> &visited, vector<int> &distances, vector<int> &fromNode)
     {
         queue<int> q;
@@ -54,41 +81,6 @@ private:
         }
     }
 
-    template <typename T>
-    void printVector(vector<T> vec) // a general method used to print all the vectors in the attributes
-    {
-        int i = 0;
-        for (auto element : vec)
-        {
-            std::cout << i++ << ": " << element << endl;
-        }
-        std::cout << endl;
-    }
-
-public:
-    Graph(int v) //constructor
-    {
-        this->v = v;
-        adj.resize(v); //allocates and initialises the vector of vector
-        // allocating and initialising other attributes
-        visited.resize(v, false);
-        distances.resize(v, -1);
-        fromNode.resize(v, -1);
-    }
-
-    void dfs(int s) // api for dfs
-    {
-        visited.assign(v, false); // preparing the visited array for dfs
-        dfs(s, visited);
-    }
-
-    void bfs(int s) // api for bfs
-    {
-        visited.assign(v, false);
-        distances.assign(v, -1);
-        fromNode.assign(v, -1);
-        bfs(s, visited, distances, fromNode);
-    }
     // topological sort
     // this function prints the topological sort
     void topologicalSort()
@@ -109,6 +101,7 @@ public:
                 dfsSort(i, st, visited);
             }
         }
+
         // printing the stack
         cout << "Topological Sort: " << endl;
         while (!st.empty())
@@ -118,6 +111,8 @@ public:
         }
     }
 
+    // the dfs method for topological sort
+    // it pushes a node into the stack once its done processing all its children
     void dfsSort(int s, stack<int> &st, vector<bool> &visited)
     {
         if (visited[s])
@@ -128,9 +123,43 @@ public:
         {
             dfsSort(child, st, visited);
         }
-        st.push(s); // the parent is pushed to the stack only after all of children have been processed
+        // the parent is pushed to the stack only after all of children have been processed
+        st.push(s);
     }
 
+    // connected components in undirected graphs
+    void processConnectedComponents()
+    {
+        visited.assign(v, false);
+        connectedComponents.assign(v, -1);
+        int i = 0;
+        int count = 0;
+        for (i = 0; i < v; i++)
+        {
+            if (!visited[i])
+            {
+                dfsConnectedComponents(i, visited, count);
+                count++;
+            }
+        }
+    }
+
+    void dfsConnectedComponents(int s, vector<bool> &visited, int count)
+    {
+        if (visited[s]) // if visited return
+            return;
+        visited[s] = true;
+        connectedComponents[s] = count;
+        //for every child of s ie every element of the vector at adj[s]
+        for (auto child : adj[s]) // do dfs on the children
+        {
+            dfsConnectedComponents(child, visited, count);
+        }
+    }
+
+    // input methods
+
+    // input for directed graphs
     void directedInput(int e) // input for directed graph
     {
         this->e = e;
@@ -143,6 +172,7 @@ public:
         }
     }
 
+    // input for undirected graphs
     void undirectedInput(int e) // input for undirecred graph
     {
         this->e = e;
@@ -161,6 +191,7 @@ public:
         adj.at(u).push_back(v);
     }
 
+    // a method to print the graph
     void printGraph()
     {
         std::cout << "Graph: " << endl;
@@ -173,6 +204,18 @@ public:
                 std::cout << child << " ";
             }
             std::cout << endl;
+        }
+        std::cout << endl;
+    }
+
+    // a general method used to print all the vectors in the attributes
+    template <typename T>
+    void printVector(vector<T> vec)
+    {
+        int i = 0;
+        for (auto element : vec)
+        {
+            std::cout << i++ << ": " << element << endl;
         }
         std::cout << endl;
     }
@@ -194,6 +237,12 @@ public:
         std::cout << "from Node: " << endl;
         printVector<int>(fromNode);
     }
+
+    void printConnectedComponents()
+    {
+        std::cout << "connected components: " << endl;
+        printVector<int>(connectedComponents);
+    }
 };
 
 int main()
@@ -213,12 +262,13 @@ int main()
     // dg.printVisited();
     // dg.printDistances();
 
-    // cout << "undirected graph: " << endl;
-    // Graph udg(6);
-    // udg.undirectedInput(7);
-    // udg.printGraph();
-    // udg.bfs(3);
-    // udg.printVisited();
-    // udg.printDistances();
-
+    cout << "undirected graph: " << endl;
+    Graph udg(6);
+    udg.undirectedInput(6);
+    udg.printGraph();
+    udg.bfs(0);
+    udg.printVisited();
+    udg.printDistances();
+    udg.processConnectedComponents();
+    udg.printConnectedComponents();
 }
