@@ -19,7 +19,7 @@ public:
     Graph(int v) //constructor
     {
         this->v = v;
-        adj.resize(v); //allocates and initialises the vector of vector
+        adj.resize(v); //resize allocates and initialises the vector of vector
         // allocating and initialising other attributes
         visited.resize(v, false);
         distances.resize(v, -1);
@@ -38,6 +38,7 @@ public:
     {
         if (visited[s]) // if visited return
             return;
+        //else
         visited[s] = true;
         //for every child of s ie every element of the vector at adj[s]
         for (auto child : adj[s]) // do dfs on the children
@@ -73,7 +74,7 @@ public:
             {
                 if (visited[child]) // if the child is visited before then return
                     continue;
-
+                //else
                 visited[child] = true;                    // mark as visited
                 distances[child] = distances[parent] + 1; // record the distance
                 fromNode[child] = parent;                 // note the parent
@@ -171,35 +172,35 @@ public:
     * we run the algorithms on the reverse graph of the problem graph
     * so we have the reverse post order on a reverse graph
     */
-    // vector<vector<int>> reverseGraph() // tested: works
-    // {
-    //     vector<vector<int>> result;
-    //     result.resize(v);
-    //     int i = 0;
+    vector<vector<int>> reverseGraph() // tested: works
+    {
+        vector<vector<int>> result;
+        result.resize(v);
+        int i = 0;
 
-    //     for (i = 0; i < v; i++)
-    //     {
-    //         for (auto child : adj.at(i))
-    //         {
-    //             result.at(child).push_back(i);
-    //         }
-    //     }
-    //     return result;
-    // }
+        for (i = 0; i < v; i++)
+        {
+            for (auto child : adj.at(i))
+            {
+                result.at(child).push_back(i);
+            }
+        }
+        return result;
+    }
 
     // // method that returns reverse post order in a deque
-    // deque<int> reversePostOrder()
-    // {
-    //     stack<int> st;            // stack for the reverse post order
-    //     visited.assign(v, false); // preparing the visited vector for dfs
-    //     for (int i = 0; i < v; i++)
-    //     {
-    //         if (!visited[i])
-    //         {
-    //             dfsSort(i, st, visited);
-    //         }
-    //     }
-    // }
+    deque<int> reversePostOrder()
+    {
+        deque<int> dq;            // stack for the reverse post order
+        visited.assign(v, false); // preparing the visited vector for dfs
+        for (int i = 0; i < v; i++)
+        {
+            if (!visited[i])
+            {
+                dfsSort(i, dq, visited);
+            }
+        }
+    }
 
     // void processStronglyConnectedComponents()
     // {
@@ -297,6 +298,4 @@ int main()
 {
     freopen("builds/input.txt", "r", stdin);
     freopen("builds/output.txt", "w", stdout);
-
-    
 }
