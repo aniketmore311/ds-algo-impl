@@ -84,16 +84,15 @@ public:
         }
     }
 
-    // topological sort
-    // this function prints the topological sort
-    void topologicalSort() //tested : works
+    // method that returns reverse post order in a deque
+    deque<int> reversePostOrder()
     {
-        deque<int> dq; // stack for the reverse post order (deque acts as a stack)
-        // post order is the order in which the points are done
-        // i.e. all the children of that node have been processed then only it is done
-        // and reverse of that is the topological sort
+        deque<int> dq;            // stack for the reverse post order
         visited.assign(v, false); // preparing the visited vector for dfs
-        // to make sure that all the connected components are covered the following for loop is implemented
+        // post order is the order in which the nodes finish being done
+        // a node is done when all its children are done ie they have been processedf
+        // the reverse of that order is the reverse post order
+
         // if we make only one dfs call from the root then
         // the nodes which are nor reachable from the node will not be considered
         // hence it is important to make multiple dfs calls
@@ -101,9 +100,34 @@ public:
         {
             if (!visited[i])
             {
-                dfsSort(i, dq, visited);
+                dfsForReversePostorder(i, dq, visited);
             }
         }
+    }
+
+    // the modified dfs method for reverse post order
+    // it pushes a node into the stack(deque.push_front) once its done processing all its children
+    void dfsForReversePostorder(int s, deque<int> &dq, vector<bool> &visited)
+    {
+        if (visited[s])
+            return;
+
+        visited[s] = true;
+        for (auto child : adj[s])
+        {
+            dfsForReversePostorder(child, dq, visited);
+        }
+        // the parent is pushed to the stack(deque) only after all of children have been processed
+        dq.push_front(s);
+    }
+    // topological sort
+    // this function prints the topological sort
+    void printTopologicalSort() //tested : works
+    {
+        deque<int> dq;
+        visited.assign(v, false); // preparing the visited vector for dfs
+        // topological sort is the reverse post order
+        dq = reversePostOrder();
         // now our deque contains the topological sort order
         // printing the stack(deque)
         cout << "Topological Sort: " << endl;
@@ -114,24 +138,9 @@ public:
         cout << "\n";
     }
 
-    // the dfs method for topological sort
-    // it pushes a node into the stack(deque.push_front) once its done processing all its children
-    void dfsSort(int s, deque<int> &dq, vector<bool> &visited)
-    {
-        if (visited[s])
-            return;
-
-        visited[s] = true;
-        for (auto child : adj[s])
-        {
-            dfsSort(child, dq, visited);
-        }
-        // the parent is pushed to the stack(deque) only after all of children have been processed
-        dq.push_front(s);
-    }
-
     // connected components in undirected graphs
-
+    
+    // preprocessing method for connected components. it modifies the connected components and visited vectors
     void processConnectedComponents()
     {
         visited.assign(v, false);
@@ -142,13 +151,14 @@ public:
         {
             if (!visited[i])
             {
-                dfsConnectedComponents(i, visited, count);
+                dfsForConnectedComponents(i, visited, count);
                 count++;
             }
         }
     }
 
-    void dfsConnectedComponents(int s, vector<bool> &visited, int count)
+    // modified dfs for connected components
+    void dfsForConnectedComponents(int s, vector<bool> &visited, int count)
     {
         if (visited[s]) // if visited return
             return;
@@ -157,7 +167,7 @@ public:
         //for every child of s ie every element of the vector at adj[s]
         for (auto child : adj[s]) // do dfs on the children
         {
-            dfsConnectedComponents(child, visited, count);
+            dfsForConnectedComponents(child, visited, count);
         }
     }
 
@@ -186,20 +196,6 @@ public:
             }
         }
         return result;
-    }
-
-    // // method that returns reverse post order in a deque
-    deque<int> reversePostOrder()
-    {
-        deque<int> dq;            // stack for the reverse post order
-        visited.assign(v, false); // preparing the visited vector for dfs
-        for (int i = 0; i < v; i++)
-        {
-            if (!visited[i])
-            {
-                dfsSort(i, dq, visited);
-            }
-        }
     }
 
     // void processStronglyConnectedComponents()
@@ -298,4 +294,6 @@ int main()
 {
     freopen("builds/input.txt", "r", stdin);
     freopen("builds/output.txt", "w", stdout);
+
+
 }
