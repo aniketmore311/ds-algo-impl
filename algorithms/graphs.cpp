@@ -139,7 +139,7 @@ public:
     }
 
     // connected components in undirected graphs
-    
+
     // preprocessing method for connected components. it modifies the connected components and visited vectors
     void processConnectedComponents()
     {
@@ -295,5 +295,8 @@ int main()
     freopen("builds/input.txt", "r", stdin);
     freopen("builds/output.txt", "w", stdout);
 
+    Graph directedGraph(4);
+    directedGraph.directedInput(3);
 
+    directedGraph.printTopologicalSort();
 }
