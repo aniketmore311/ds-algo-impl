@@ -67,7 +67,7 @@ public:
         visited[s] = true;
         distances[s] = 0;
         fromNode[s] = s;
-        q.push(s); // push s to the string
+        q.push(s); // push s to the queue
 
         while (!q.empty()) // while q is not empty
         {
@@ -76,7 +76,7 @@ public:
 
             for (auto child : adj.at(parent)) // for all the children of the parent
             {
-                // if visited continue
+                // if child is visited continue 
                 if (visited[child])
                 {
                     continue;
@@ -87,7 +87,7 @@ public:
                     distances[child] = distances[parent] + 1; // record the distance
                     fromNode[child] = parent;                 // note the parent
 
-                    q.push(child); // push the child to the queqe so that its children could be processed
+                    q.push(child); // push the child to the queue so that its children could be processed
                 }
             }
         }
