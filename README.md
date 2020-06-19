@@ -12,7 +12,7 @@
   - [binary search tree](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/binarytreepq.cpp)
   - [resizing an array](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/resizeArray.cpp)
 
-* **Algorithms**
+- **Algorithms**
 
   - [binary search (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/binarySearch.cpp)
   - [merge sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/recursiveMergeSort.cpp)
@@ -21,10 +21,12 @@
   - [counting sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/CountingSort.cpp)
   - [shell sort, insertion sort, selection sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/elementrySorting.cpp)
   - [math: isprime, all factors, prime factors, gcd, lcm, fast exponentiation](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/math.cpp)
-  - [graphs, bfs, dfs, topological sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/graphs.cpp)
-  - [connected Components in undirected graphs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/connectedComponents.cpp)
+  - [Graph, bfs, dfs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/graphClass.cpp)
+  - [topological sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/topologicalSort.cpp)
+  - [connected components in undirected graphs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/connectedComponents.cpp)
+  - [strongly connected components in directed graphs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/stronglyConnectedComponents.cpp)
 
-* **popular problems**
+- **popular problems**
   - [checking palindrome string](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/stringPalindrome.cpp)
   - [0-1 knapsack (memoized)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackmemoized.cpp)
   - [0-1 knapsack (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackIterative.cpp)
