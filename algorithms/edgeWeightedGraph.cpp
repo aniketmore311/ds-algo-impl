@@ -6,6 +6,7 @@ class EdgeWeightedGraph
 {
 private:
   vector<vector<pair<int, double>>> adj; // a vector(adj) of vectors(adjecency list) of pairs(weighted edge) of int(end vertex) and doubles(edge weight)
+  vector<tuple<int, int, int>> edgeList;
   int vertices;
   int edges;
 
@@ -25,6 +26,7 @@ public:
   void undirectedInput(int edges)
   {
     this->edges = edges;
+    this->edgeList.resize(edges);
     int u, v;
     double inputWeight;
     for (int i = 0; i < edges; i++)
@@ -33,6 +35,7 @@ public:
 
       addEdge(u, v, inputWeight);
       addEdge(v, u, inputWeight);
+      edgeList.push_back({u, v, inputWeight});
     }
   }
 
