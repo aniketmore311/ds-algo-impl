@@ -1,7 +1,7 @@
 //implementation of the disjoint set union data structure
 //autor: aniket more
-//source : the competetive programming handbook
-//date:
+//source : the competitive programmer's handbook
+//date: 27-06-2020
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -10,6 +10,8 @@ int size[100];
 
 int find(int x)
 {
+  // follow the links upwards until you find a self linked node
+  // that node is the parent
   while (link[x] != x)
     x = link[x];
   return x;
@@ -29,7 +31,9 @@ void unite(int a, int b)
     swap(a, b);
   // now a is the big set parent and b is the small set parent
   size[a] += size[b];
+  // the size of set of a is increased to accomodate b
   link[b] = a;
+  // b is linked to a
 }
 
 int main()
