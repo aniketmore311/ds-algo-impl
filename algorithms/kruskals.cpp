@@ -6,6 +6,27 @@ using namespace std;
 #define debug(x) cout << #x << ": " << x << endl
 // we need 2 data structures for this algorithm the weighted graph and the union find
 
+// the edge class needed for the edgeweighted graph
+class Edge
+{
+public:
+  int u;
+  int v;
+  double weight;
+
+  Edge(int u, int v, double weight)
+  {
+    this->u = u;
+    this->v = v;
+    this->weight = weight;
+  }
+
+  bool operator<(const Edge &other) const
+  {
+    return this->weight < other.weight;
+  }
+};
+
 // the weighted graph class
 class EdgeWeightedGraph
 {
@@ -13,7 +34,7 @@ public:
   vector<vector<pair<int, double>>> adj; // a vector(adj) of vectors(adjecency list) of pairs(weighted edge) of int(end vertex) and doubles(edge weight)
   int vertices;
   int edges;
-  vector<tuple<int, int, double>> edgeList;
+  vector<Edge> edgeList;
 
   EdgeWeightedGraph(int vertices)
   {
@@ -61,13 +82,12 @@ public:
 
   void printEdgeList()
   {
-    for (auto tup : edgeList)
+    for (auto edge : edgeList)
     {
-      cout << "(" << get<0>(tup) << ", " << get<1>(tup) << ", " << get<2>(tup) << ")," << endl;
+      cout << "(" << edge.u << ", " << edge.v << ", " << edge.weight << ")" << endl;
     }
   }
 };
-
 // the union find class
 class dsu
 {
@@ -136,18 +156,12 @@ public:
   }
 };
 
-// function to sort the edgeList
-bool comp(tuple<int, int, double> a, tuple<int, int, double> b)
-{
-  return (get<2>(a) < get<2>(b));
-}
-
 // method to print the mst
-void printTupleVector(vector<tuple<int, int, double>> tupleVector)
+void printEdgeVector(vector<Edge> edgeList)
 {
-  for (auto tup : tupleVector)
+  for (auto edgeItem : edgeList)
   {
-    cout << "(" << get<0>(tup) << ", " << get<1>(tup) << ", " << get<2>(tup) << ")," << endl;
+    cout << "(" << edgeItem.u << ", " << edgeItem.v << ", " << edgeItem.weight << ")" << endl;
   }
 }
 
@@ -170,29 +184,29 @@ int main()
   graph.undirectedInput(9);
   // graph.printGraph();
 
-  // dsu that is needed
+  // dsu which is needed
   dsu dsu(6);
 
   // the final mst
-  vector<tuple<int, int, double>> mst;
+  vector<Edge> mst;
 
   // sorting the edgeList
-  sort(graph.edgeList.begin(), graph.edgeList.end(), comp);
+  sort(graph.edgeList.begin(), graph.edgeList.end());
+  // no comp function is needed because of the operator overloading in the Edge class
+
   // graph.printEdgeList();
 
   // for all edges in the edgeList
-  for (auto tup : graph.edgeList)
+  for (auto edgeItem : graph.edgeList)
   {
-    int u = get<0>(tup);
-    int v = get<1>(tup);
-    if (!dsu.same(u, v)) // if vertices not in the same component
+    if (!dsu.same(edgeItem.u, edgeItem.v)) // if vertices not in the same component
     {
-      mst.push_back(tup); // add the edge to the mst
-      dsu.unite(u, v);    // unite the 2 components
+      mst.push_back(edgeItem);           // add the edge to the mst
+      dsu.unite(edgeItem.u, edgeItem.v); // unite the 2 components
     }
   }
 
-  printTupleVector(mst); // print the answer
+  printEdgeVector(mst); // print the answer
 }
 
 // sample input
@@ -210,13 +224,9 @@ int main()
 
 // the processed output
 /*
-0 1 1
-1 3 15
-3 4 6
-4 5 9
-5 0 14
-2 0 9
-2 1 10
-2 3 11
-2 5 2
+(0, 1, 1)
+(2, 5, 2)
+(3, 4, 6)
+(4, 5, 9)
+(2, 0, 9)
 */
