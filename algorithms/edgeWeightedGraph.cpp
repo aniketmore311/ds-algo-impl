@@ -4,12 +4,10 @@ using namespace std;
 
 class EdgeWeightedGraph
 {
-private:
+public:
   vector<vector<pair<int, double>>> adj; // a vector(adj) of vectors(adjecency list) of pairs(weighted edge) of int(end vertex) and doubles(edge weight)
   int vertices;
   int edges;
-
-public:
   vector<tuple<int, int, double>> edgeList;
 
   EdgeWeightedGraph(int vertices)
@@ -53,6 +51,14 @@ public:
         cout << " (" << elementPair.first << ", " << elementPair.second << "), ";
       }
       std::cout << std::endl;
+    }
+  }
+
+  void printEdgeList()
+  {
+    for (auto tup : edgeList)
+    {
+      cout << "(" << get<0>(tup) << ", " << get<1>(tup) << ", " << get<2>(tup) << ")," << endl;
     }
   }
 };
