@@ -29,13 +29,17 @@ public:
   int vertices;
   int edges;
   vector<Edge> edgeList;
+  vector<bool> visited;
 
+  // the constructor
   EdgeWeightedGraph(int vertices)
   {
     adj.resize(vertices);
+    visited.resize(vertices, false);
     this->vertices = vertices;
   }
 
+  // method to add an edge u -> v
   void addEdge(int u, int v, double weight)
   {
     adj.at(u).push_back({v, weight});
