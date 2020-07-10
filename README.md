@@ -25,9 +25,11 @@
   - [topological sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/topologicalSort.cpp)
   - [connected components in undirected graphs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/connectedComponents.cpp)
   - [strongly connected components in directed graphs](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/stronglyConnectedComponents.cpp)
+  - [weighted graph](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/edgeWeightedGraph.cpp)
+  - [kruskal's algorithm for mst](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/kruskals.cpp)
+  - [dijkstra's](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/dijkstra.cpp)
 
-- **popular problems**
+* **popular problems**
   - [checking palindrome string](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/stringPalindrome.cpp)
   - [0-1 knapsack (memoized)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackmemoized.cpp)
   - [0-1 knapsack (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/popular_problems/0-1knapsackIterative.cpp)
-
