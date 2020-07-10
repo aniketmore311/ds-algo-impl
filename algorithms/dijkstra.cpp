@@ -35,25 +35,25 @@ int main()
   int x; // the source
   cin >> x;
 
-  distance[x] = 0;
-  pq.push({0, x});
+  distance[x] = 0; // making the distance of the source =0 from itself
+  pq.push({0, x}); // inserting it into the queue
 
-  while (!pq.empty())
+  while (!pq.empty()) // while the queue is not empty
   {
-    int u = pq.top().second; // finding the closest vertex outside the tree from the source
-    pq.pop();
-    if (visited[u])
+    int u = pq.top().second; // finding the closest vertex from the source outside the tree
+    pq.pop();                // taking that vertex of the queue
+    if (visited[u])          // if visited return
       continue;
-    visited[u] = true;
+    visited[u] = true; // else mark visited
 
     for (pair<int, int> p : adj[u]) // for every surrounding edge of u ie the closest point
     {
       int v = p.first;
-      int w = p.second; // find the end point v and the weight of the edge
-      if (distance[u] + w < distance[v])
+      int w = p.second;                  // find the end point v and the weight of the edge
+      if (distance[u] + w < distance[v]) // if the path throught u to v is smaller than the current path
       {
-        distance[v] = distance[u] + w;
-        pq.push({distance[v], v});
+        distance[v] = distance[u] + w; // update the distance and
+        pq.push({distance[v], v});     // add the point to the queue
       }
     }
   }
