@@ -10,6 +10,8 @@
   - [queue](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/queuewithlist.cpp)
   - [min priority queue](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/priorityQueue.cpp)
   - [binary search tree](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/binarytreepq.cpp)
+  - [hash table](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/hashTable.cpp)
+  - [disjoint set union](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/dsu.cpp)
   - [resizing an array](https://github.com/aniketmore311/ds_algo/blob/master/dataStructures/resizeArray.cpp)
 
 - **Algorithms**
