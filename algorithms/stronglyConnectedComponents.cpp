@@ -246,7 +246,7 @@ void processStronglyConnectedComponents(Graph &graph)
   graph.visited.assign(graph.v, false);
   graph.stronglyConnectedComponents.assign(graph.v, -1);
 
-  vector<vector<int>> reversedGraphVector = graph.reverseGraph(); // getting the ad of the reversed graph
+  vector<vector<int>> reversedGraphVector = graph.reverseGraph(); // getting the adecencylist of the reversed graph
 
   Graph reversed(graph.v); // creating the actual object called reversed from reverseGraphVector
   // we need this object to get the reverse post order as that method takes an object arguement not an adjecencty list
@@ -263,7 +263,7 @@ void processStronglyConnectedComponents(Graph &graph)
     {
       dfsForStronglyConnectedComponents(num, graph, count);
       count++;
-      // notice that teh actual strongly connected components method runs on the original graph not the reversed graph
+      // notice that the actual strongly connected components method runs on the original graph not the reversed graph
       // the reversed graph is only used to get the order that we need to run the connected  components algorithm
       // while the actual algorithm still runs on the original graph
     }
