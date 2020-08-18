@@ -6,9 +6,10 @@ using namespace std;
 class HashTable
 {
 private:
-  list<pair<string, int>> table[91]; // an array of lists of pairs of string and integers size is 91 indexed from 0 to 90
+  list<pair<string, int>> table[97]; // an array of lists of pairs of string and integers size is 97 indexed from 0 to 96
   int R = 31;                        // a prime number needed for hashing
-  int n = 91;                        // the size
+  int n = 97;                        // the size
+
 public:
   int hashString(std::string inputString) // a function to hash a string it returns the hash index
   {
@@ -38,11 +39,12 @@ public:
         break;
       }
     }
+    throw std::invalid_argument("not found in hashmap");
   }
 
   void printTable()
   {
-    for (int i = 0; i < 91; i++)
+    for (int i = 0; i < n; i++)
     {
       if (table[i].empty())
         continue;
@@ -66,6 +68,7 @@ int main()
 
   HashTable t;
   string s1, s2;
+  string s3 = "not";
   cin >> s1 >> s2;
 
   t.insert(s1, 9);
