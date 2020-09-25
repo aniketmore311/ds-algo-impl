@@ -30,3 +30,5 @@
   - [weighted graph](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/edgeWeightedGraph.cpp)
   - [kruskal's algorithm for mst](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/kruskals.cpp)
   - [dijkstra's](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/dijkstra.cpp)
+  - [bit
+      manipulation](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/bitmanipulation.cpp)
