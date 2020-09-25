@@ -1,6 +1,7 @@
 .vscode
-.o
-algorithms/builds/*
-datastructures/builds/*
+*.o
+*.out
+algorithms/build/*
+datastructures/build/*
 tempCodeRunnerFile.cpp
 *test.cpp
