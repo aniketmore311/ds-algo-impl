@@ -63,6 +63,27 @@ void insertionSort(int *start, int *end)
     }
 }
 
+void insertionSort2(int arr[], int n)
+{
+    int i, j;
+    for (j = 1; j < n - 1; j++)
+    {
+        int key = arr[j];
+        for (i = j - 1; i >= 0; i--)
+        {
+            if (arr[i] > key)
+            {
+                arr[i + 1] = arr[i];
+            }
+            else
+            {
+                break;
+            }
+        }
+        arr[i + 1] = key;
+    }
+}
+
 void selectionSort(int *start, int *end)
 {
     int n = end - start;
