@@ -84,6 +84,21 @@ void insertionSort2(int arr[], int n)
     }
 }
 
+void insertionSort3(vector<int> &vec)
+{
+    int n = vec.size();
+    int i{0}, j{0};
+    for (i = 1; i < n; i++)
+    {
+        int key = vec[i];
+        for (j = i - 1; j >= 0 && vec[j] > key; j--)
+        {
+            vec[j + 1] = vec[j];
+        }
+        vec[j + 1] = key;
+    }
+}
+
 void selectionSort(int *start, int *end)
 {
     int n = end - start;
