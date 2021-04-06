@@ -18,6 +18,7 @@
 
   - [binary search (iterative)](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/binarySearch.cpp)
   - [merge sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/recursiveMergeSort.cpp)
+  - [merge sort v2](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/mergesort2.cpp)
   - [quicksort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/quickSort.cpp)
   - [heapsort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/HeapSort.cpp)
   - [counting sort](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/CountingSort.cpp)
