@@ -33,3 +33,4 @@
   - [dijkstra's](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/dijkstra.cpp)
   - [bit
       manipulation](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/bitmanipulation.cpp)
+  - [reverse linked list](https://github.com/aniketmore311/ds_algo/blob/master/algorithms/reverse_list.cpp)
